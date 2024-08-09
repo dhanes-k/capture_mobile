@@ -1,142 +1,154 @@
 <html>
-<head>
-<style>
-    #canvas {
-      position: relative;
-    }
- 
-    #background {
-      display: none;
-    }
- 
-    #video {
-      position: relative;
-      /* transform: scaleX(-1);
-      -webkit-transform: scaleX(-1); */
-    }
- 
-    .container {
-      width: 100%;
-      height: 60vh;
-      display: flex;
-    }
- 
-    .video-container {
-      width: 50%;
-      height: 100%;
-      margin: 0 10px;
-      position: relative;
-    }
- 
-    #bharathiyarLayout {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
- 
-    .preview {
-      position: relative;
-      width: 50%;
-      height: 100%;
-    }
- 
-    #previewballon {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      cursor: move;
-      opacity: 1;
-      width: 100%;
-      height: 100%;
-    }
- 
-    #ballon {
-      position: absolute;
-      z-index: 999;
-      top: 0px;
-      left: 0px;
-    }
- 
-    .output {
-      display: none;
-      margin: 20px 0 0 0;
-      width: 100%;
-      height: auto;
-      overflow: scroll;
-      position: relative;
-    }
- 
-    .btn {
-      width: 150px;
-      height: 40px;
-      border: none;
-      border-radius: 4px;
-      background-color: #272727;
-      color: #FFFFFF;
-      font-size: 18px;
-      margin: 0 0 0 10px;
-    }
-</style>
-</head>
-<body onload="init();initPre();">
-<button class="btn" onclick="startWebcam();">Start WebCam</button>
-<button class="btn" onclick="stopWebcam();">Stop WebCam</button>
-<button class="btn" onclick="snapshot();snapshotPre();">Take Snapshot</button>
-<button class="btn" onclick="download()">Download</button>
-<button class="btn" onclick="switchCamera();">Switch Camera</button>
+  <head>
+    <style>
+      #canvas {
+        position: relative;
+      }
 
-  <br />
-<br />
- 
-  <div class="container">
-<div class="video-container">
-<video
-        onclick="snapshot(this);snapshotPre(this);"
-        style="width: 100%; height: 100%"
-        id="video"
-        controls
-        autoplay
-></video>
-<img id="bharathiyarLayout" alt="" src="./final.png" />
-</div>
-<div class="preview">
-<canvas id="previewmyCanvas" style="width: 100%; height: 100%"></canvas>
-<img id="previewballon" alt="" src="./final.png" />
-</div>
-</div>
-<div class="output">
-<canvas
-      id="myCanvas"
-      style="width: 2560px; height: 1440px"
-      width="2560"
-      height="1440"
-></canvas>
-<img id="ballon" alt="" src="./final.png" />
-</div>
- 
-  <br />
-<br />
-</body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      #background {
+        display: none;
+      }
+
+      #video {
+        position: relative;
+        /* transform: scaleX(-1);
+      -webkit-transform: scaleX(-1); */
+      }
+
+      .container {
+        width: 100%;
+        height: 60vh;
+        display: flex;
+      }
+
+      .video-container {
+        width: 50%;
+        height: 100%;
+        margin: 0 10px;
+        position: relative;
+      }
+
+      #bharathiyarLayout {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .preview {
+        position: relative;
+        width: 50%;
+        height: 100%;
+      }
+
+      #previewballon {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        cursor: move;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+      }
+
+      #ballon {
+        position: absolute;
+        z-index: 999;
+        top: 0px;
+        left: 0px;
+      }
+
+      .output {
+        display: none;
+        margin: 20px 0 0 0;
+        width: 100%;
+        height: auto;
+        overflow: scroll;
+        position: relative;
+      }
+
+        .btn {
+            width: 150px;
+            height: 40px;
+            border: none;
+            box-shadow: 2px 2px 8px -1px rgba(128, 128, 128, 0.466);
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 18px;
+            margin: 40px 0 0 40px;
+            transition: 0.5s;
+        }
+        .btn:hover,:focus{
+            transform: scale(1.2);
+        }
+
+    </style>
+  </head>
+  <body onload="init();initPre();">
+    <button class="btn" onclick="startWebcam();">Start WebCam</button>
+    <button class="btn" onclick="stopWebcam();">Stop WebCam</button>
+    <button class="btn" onclick="snapshot();snapshotPre();">
+      Take Snapshot
+    </button>
+    <button class="btn" onclick="switchCamera();">Switch Camera</button>
+    <button class="btn" onclick="download()">Download</button>
+
+    <br />
+    <br />
+
+    <div class="container">
+      <div class="video-container">
+        <video
+          onclick="snapshot(this);snapshotPre(this);"
+          style="width: 100%; height: 100%"
+          id="video"
+          controls
+          autoplay
+        ></video>
+        <img id="bharathiyarLayout" alt="" src="./final.png" />
+      </div>
+      <div class="preview">
+        <canvas id="previewmyCanvas" style="width: 100%; height: 100%"></canvas>
+        <img id="previewballon" alt="" src="./final.png" />
+      </div>
+    </div>
+    <div class="output">
+      <canvas
+        id="myCanvas"
+        style="width: 2560px; height: 1440px"
+        width="2560"
+        height="1440"
+      ></canvas>
+      <img id="ballon" alt="" src="./final.png" />
+    </div>
+
+    <br />
+    <br />
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.14.0-beta.2/jquery-ui.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://code.jquery.com/ui/1.14.0-beta.2/jquery-ui.min.js"
     integrity="sha256-E7PeZTkHU61hmvmEMwtUMgm9Aff574wswy5F1Y0oIRA="
-    crossorigin="anonymous"></script>
-<script>
+    crossorigin="anonymous"
+  ></script>
+  <script>
     dragElement(document.getElementById("ballon"));
- 
+
     navigator.getUserMedia =
       navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia ||
       navigator.msGetUserMedia;
- 
+
     // var video;
     // var webcamStream;
- 
+
     // function startWebcam() {
     //   if (navigator.getUserMedia) {
     //     navigator.mediaDevices
@@ -153,7 +165,7 @@
     //     console.log("getUserMedia not supported");
     //   }
     // }
- 
+
     // function stopWebcam() {
     //   var track = webcamStream.getTracks()[0];
     //   if (track) {
@@ -164,33 +176,41 @@
     let video;
     let webcamStream;
     let devices = [];
-    
+
     function startWebcam() {
       if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-        navigator.mediaDevices.enumerateDevices().then((deviceInfos) => {
-          devices = deviceInfos.filter(device => device.kind === 'videoinput');
-          if (devices.length > 0) {
-            navigator.mediaDevices.getUserMedia({
-              video: { deviceId: devices[currentCamera].deviceId },
-              audio: false,
-            }).then((localMediaStream) => {
-              video = document.querySelector("video");
-              video.srcObject = localMediaStream;
-              webcamStream = localMediaStream;
-            }).catch((err) => {
-              console.log('Error accessing media devices.', err);
-            });
-          } else {
-            console.log("No video input devices found");
-          }
-        }).catch((err) => {
-          console.log('Error enumerating devices.', err);
-        });
+        navigator.mediaDevices
+          .enumerateDevices()
+          .then((deviceInfos) => {
+            devices = deviceInfos.filter(
+              (device) => device.kind === "videoinput"
+            );
+            if (devices.length > 0) {
+              navigator.mediaDevices
+                .getUserMedia({
+                  video: { deviceId: devices[currentCamera].deviceId },
+                  audio: false,
+                })
+                .then((localMediaStream) => {
+                  video = document.querySelector("video");
+                  video.srcObject = localMediaStream;
+                  webcamStream = localMediaStream;
+                })
+                .catch((err) => {
+                  console.log("Error accessing media devices.", err);
+                });
+            } else {
+              console.log("No video input devices found");
+            }
+          })
+          .catch((err) => {
+            console.log("Error enumerating devices.", err);
+          });
       } else {
         console.log("getUserMedia not supported");
       }
     }
-    
+
     function switchCamera() {
       if (devices.length > 1) {
         currentCamera = (currentCamera + 1) % devices.length;
@@ -198,26 +218,26 @@
         startWebcam();
       }
     }
-    
+
     function stopWebcam() {
       if (webcamStream) {
         const tracks = webcamStream.getTracks();
-        tracks.forEach(track => track.stop());
+        tracks.forEach((track) => track.stop());
       }
     }
     var canvas, ctx;
     var p_canvas, p_ctx;
- 
+
     function init() {
       p_canvas = document.getElementById("previewmyCanvas");
       p_ctx = p_canvas.getContext("2d");
     }
- 
+
     function initPre() {
       canvas = document.getElementById("myCanvas");
       ctx = canvas.getContext("2d");
     }
- 
+
     // function snapshot() {
     //   p_ctx.save();
     //   p_ctx.scale(-1, 1);
@@ -225,7 +245,7 @@
     //   p_ctx.drawImage(video, 0, 0, p_canvas.width, p_canvas.height);
     //   p_ctx.restore();
     // }
- 
+
     // function snapshotPre() {
     //   ctx.save();
     //   ctx.scale(-1, 1);
@@ -233,7 +253,7 @@
     //   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     //   ctx.restore();
     // }
-    
+
     function snapshot() {
       p_ctx.drawImage(video, 0, 0, p_canvas.width, p_canvas.height);
       var d_canvas = document.getElementById("previewmyCanvas");
@@ -243,26 +263,25 @@
       var d_canvas = document.getElementById("canvas");
     }
 
-// function snapshotPre() {
-//     // // Save the current state of the context
-//     // ctx.save();
-    
-//     // // Adjust for device pixel ratio (DPR) to maintain high quality
-//     // const dpr = window.devicePixelRatio || 1;
-//     // ctx.scale(dpr, dpr);
-    
-//     // // Apply transformations for mirroring the image
-//     // ctx.scale(-1, 1);
-//     // ctx.translate(-canvas.width / dpr, 0);
-    
-//     // Ensure canvas size matches the video size and take a snapshot
-//     ctx.drawImage(video, 0, 0, canvas.width / dpr, canvas.height / dpr);
-    
-//     // Restore the context to its original state
-//     ctx.restore();
-// }
+    // function snapshotPre() {
+    //     // // Save the current state of the context
+    //     // ctx.save();
 
- 
+    //     // // Adjust for device pixel ratio (DPR) to maintain high quality
+    //     // const dpr = window.devicePixelRatio || 1;
+    //     // ctx.scale(dpr, dpr);
+
+    //     // // Apply transformations for mirroring the image
+    //     // ctx.scale(-1, 1);
+    //     // ctx.translate(-canvas.width / dpr, 0);
+
+    //     // Ensure canvas size matches the video size and take a snapshot
+    //     ctx.drawImage(video, 0, 0, canvas.width / dpr, canvas.height / dpr);
+
+    //     // Restore the context to its original state
+    //     ctx.restore();
+    // }
+
     function download() {
       var ballon = document.getElementById("ballon");
       var $ballon = $("#ballon");
@@ -278,7 +297,7 @@
       a.download = "Pic.png"; // File name Here
       a.click();
     }
- 
+
     function dragElement(elmnt) {
       var pos1 = 0,
         pos2 = 0,
@@ -290,7 +309,7 @@
       } else {
         elmnt.onmousedown = dragMouseDown;
       }
- 
+
       function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
@@ -299,7 +318,7 @@
         document.onmouseup = closeDragElement;
         document.onmousemove = elementDrag;
       }
- 
+
       function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
@@ -310,11 +329,11 @@
         elmnt.style.top = elmnt.offsetTop - pos2 + "px";
         elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
       }
- 
+
       function closeDragElement() {
         document.onmouseup = null;
         document.onmousemove = null;
       }
     }
-</script>
+  </script>
 </html>
